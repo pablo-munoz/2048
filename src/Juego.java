@@ -1,5 +1,7 @@
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 
 import javax.swing.JFrame;
@@ -29,16 +31,31 @@ public class Juego extends JPanel {
     
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Color previousColor = g.getColor();
         
-        g.setColor(new Color(205, 193, 180));
+        Color previousColor = g.getColor();
+        Font previousFont = g.getFont();
+
+        g.setFont(new Font("Helvetica", Font.PLAIN, CELL_HEIGHT)); 
+        FontMetrics fm = g.getFontMetrics();
+        int strWidth = fm.stringWidth("2");
+        int strHeight = fm.getAscent();
+        
         for (int numRow = 0; numRow < this.cuadros.length; numRow ++) {
             for (int numCol = 0; numCol < this.cuadros.length; numCol++) {
-                g.fillRect(PADDING + (PADDING + CELL_WIDTH) * numRow, PADDING + (PADDING + CELL_HEIGHT) * numCol, CELL_WIDTH, CELL_HEIGHT);
+                int cellX = PADDING + (PADDING + CELL_WIDTH) * numRow;
+                int cellY = PADDING + (PADDING + CELL_HEIGHT) * numCol;
+                g.setColor(new Color(205, 193, 180));
+                g.fillRect(cellX, cellY, CELL_WIDTH, CELL_HEIGHT);
+                
+                g.setColor(BACKGROUND_COLOR);
+                int numX = (cellX + (CELL_WIDTH / 2)) - (strWidth / 2);
+                int numY = cellY + CELL_HEIGHT - ((CELL_HEIGHT - strHeight) / 2);
+                g.drawString("2", numX, numY);
             }
         }
         
         g.setColor(previousColor);
+        g.setFont(previousFont);
     }
     
     public static void main(String[] args) {
