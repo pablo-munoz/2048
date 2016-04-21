@@ -19,7 +19,11 @@ public class Celda {
      * Doubles the Celda valor.
      */
     public void incrementa() {
-        this.valor *= 2;
+        if (this.valor == 0) {
+            this.valor = 2;
+        } else {         
+            this.valor *= 2;
+        }
     }
 
     public int getValor() {

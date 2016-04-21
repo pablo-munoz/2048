@@ -41,4 +41,20 @@ public class Tablero {
     public Celda[][] getCuadros() {
         return this.cuadros;
     }
+    
+    public void arriba() {
+        this.cuadros[0][0].incrementa();
+    }
+    
+    public void derecha() {
+        
+    }
+    
+    public void abajo() {
+        
+    }
+    
+    public void izquierda() {
+        
+    }
 }

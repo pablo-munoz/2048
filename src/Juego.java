@@ -3,6 +3,9 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -26,6 +29,16 @@ public class Juego extends JPanel {
         
         this.setPreferredSize(new Dimension(GRID_WIDTH, GRID_HEIGHT));
         this.setBackground(BACKGROUND_COLOR);
+        
+        this.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                Juego.this.tablero.arriba();
+                Juego.this.repaint();
+            }
+        });
+        
+        this.setFocusable(true);
+        this.requestFocus();
     }
     
     public void paintComponent(Graphics g) {
@@ -72,5 +85,4 @@ public class Juego extends JPanel {
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-
 }
