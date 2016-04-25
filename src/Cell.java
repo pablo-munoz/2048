@@ -1,17 +1,17 @@
 import java.util.Random;
 
-public class Celda {
+public class Cell {
     private int valor;
     private static final Random random = new Random();
 
     /*
      * A default Celda is instatiated with a valor of 2 or 4.
      */
-    public Celda() {
+    public Cell() {
         this.valor = (random.nextInt(2) + 1) * 2;
     }
 
-    public Celda(int valor) {
+    public Cell(int valor) {
         this.valor = valor;
     }
 
@@ -28,6 +28,10 @@ public class Celda {
 
     public int getValor() {
         return this.valor;
+    }
+    
+    public boolean isEmpty() {
+        return this.valor == 0;
     }
 
     public String toString() {
