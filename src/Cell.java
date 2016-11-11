@@ -1,40 +1,43 @@
-import java.util.Random;
-
 public class Cell {
-    private int valor;
-    private static final Random random = new Random();
-
-    /*
-     * A default Celda is instatiated with a valor of 2 or 4.
-     */
-    public Cell() {
-        this.valor = (random.nextInt(2) + 1) * 2;
-    }
-
-    public Cell(int valor) {
-        this.valor = valor;
-    }
-
-    /*
-     * Doubles the Celda valor.
-     */
-    public void incrementa() {
-        if (this.valor == 0) {
-            this.valor = 2;
-        } else {         
-            this.valor *= 2;
-        }
-    }
-
-    public int getValor() {
-        return this.valor;
-    }
-    
-    public boolean isEmpty() {
-        return this.valor == 0;
-    }
-
-    public String toString() {
-        return new Integer(this.valor).toString();
-    }
+   int value;
+   
+   private static int getRandomInitialValue() {
+       return Math.random() < 0.8 ? 2 : 4;
+   }
+   
+   public static Cell create2or4Cell() {
+       return new Cell(Cell.getRandomInitialValue());
+   }
+   
+   public static Cell createEmptyCell() {
+       return new Cell(0);
+   }
+   
+   public Cell(int value) {
+       this.value = value;
+   }
+   
+   public int getValue() {
+       return this.value;
+   }
+   
+   public void doubleValue() {
+       this.value *= 2;
+   }
+   
+   public boolean isEmpty() {
+       return this.value == 0;
+   }
+   
+   public boolean equals(Cell other) {
+       return this.value == other.value;
+   }
+   
+   public Cell clone() {
+       return new Cell(this.value);
+   }
+   
+   public String toString() {
+       return "" + this.value;
+   }
 }
